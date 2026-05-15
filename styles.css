@@ -375,7 +375,7 @@ section[id] + section[id] { border-top: 0.5px solid var(--rule); }
 .ticker-dot { width: 4px; height: 4px; background: var(--yellow); border-radius: 50%; flex-shrink: 0; }
 @keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-.thesis-section { border-top: 0.5px solid var(--rule); padding: 120px 48px; }
+.thesis-section { border-top: 0.5px solid var(--rule); padding: 100px 48px; }
 .thesis-inner {
   max-width: 1200px; margin: 0 auto;
   display: grid; grid-template-columns: 240px 1fr;
@@ -442,7 +442,7 @@ section[id] + section[id] { border-top: 0.5px solid var(--rule); }
   .shift-card:last-child { border-bottom: none; }
 }
 
-.phases-section { border-top: 0.5px solid var(--rule); }
+.phases-section { border-top: 0.5px solid var(--rule); padding-bottom: 72px; }
 .phases-header {
   max-width: 1200px; margin: 0 auto;
   padding: 80px 48px 56px;
@@ -496,7 +496,7 @@ hr.pr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 18px; 
 
 .berklee-section { border-top: 0.5px solid var(--rule); background: var(--ikb-deep); }
 .berklee-inner {
-  max-width: 1200px; margin: 0 auto; padding: 112px 48px;
+  max-width: 1200px; margin: 0 auto; padding: 88px 48px;
   display: grid; grid-template-columns: 1fr 320px;
   gap: 100px; align-items: start;
 }
@@ -523,7 +523,7 @@ hr.pr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 18px; 
 .bf-val { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--white); }
 @media (max-width: 900px) { .berklee-inner { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; } }
 
-.why-section { border-top: 0.5px solid var(--rule); padding: 120px 48px; }
+.why-section { border-top: 0.5px solid var(--rule); padding: 100px 48px; }
 .why-inner { max-width: 1200px; margin: 0 auto; }
 .why-header { display: flex; align-items: center; gap: 16px; margin-bottom: 64px; }
 .why-header::after { content: ''; flex: 1; height: 0.5px; background: var(--rule); }
@@ -643,7 +643,7 @@ hr.pr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 18px; 
 
 .chapter {
   display: grid; grid-template-columns: 240px 1fr;
-  gap: 80px; padding: 96px 0; border-bottom: 0.5px solid var(--rule);
+  gap: 80px; padding: 100px 0; border-bottom: 0.5px solid var(--rule);
 }
 .chapter:last-of-type { border-bottom: none; }
 .chapter-left { position: sticky; top: 80px; height: fit-content; padding-top: 4px; }
@@ -894,7 +894,7 @@ hr.tr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 24px; 
 
 /* ── CITIES ── */
 .cities-hero { padding: 88px 48px 80px; border-bottom: 0.5px solid var(--rule); }
-.cities-hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.cities-hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .cities-hero-h1 { font-family: var(--display); font-size: clamp(60px,8vw,104px); font-weight: 900; line-height: 1.0; letter-spacing: 0.01em; text-transform: uppercase; }
 .cities-hero-h1 em { color: var(--yellow); font-style: italic; font-weight: 400; }
 @media (max-width: 900px) { .cities-hero { padding: 60px 24px 56px; } .cities-hero-inner { grid-template-columns: 1fr; gap: 44px; } }
@@ -1017,7 +1017,7 @@ hr.tr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 24px; 
 @media (max-width: 900px) { .city-contact-band { padding: 64px 24px; } .city-contact-inner { grid-template-columns: 1fr; gap: 44px; } }
 
 /* ── CASE STUDIES ── */
-.cs-hero { padding: 88px 48px 72px; border-bottom: 0.5px solid var(--rule); }
+.cs-hero { padding: 88px 48px 48px; border-bottom: 0.5px solid var(--rule); }
 .cs-hero-inner { max-width: 1200px; margin: 0 auto; }
 .cs-hero-h1 { font-family: var(--display); font-size: clamp(64px,9vw,116px); font-weight: 900; line-height: 1.0; letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 32px; }
 .cs-hero-h1 em { color: var(--yellow); font-style: italic; font-weight: 400; }
@@ -1120,7 +1120,7 @@ hr.sr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 18px; 
 .team-section-inner { max-width: 1200px; margin: 0 auto; }
 @media (max-width: 768px) { .team-section { padding: 0 24px; } }
 
-.member { display: grid; grid-template-columns: 280px 1fr; gap: 80px; padding: 96px 0; border-bottom: 0.5px solid var(--rule); align-items: start; }
+.member { display: grid; grid-template-columns: 280px 1fr; gap: 80px; padding: 100px 0; border-bottom: 0.5px solid var(--rule); align-items: start; }
 .member:last-child { border-bottom: none; }
 .member-avatar-wrap { position: sticky; top: 80px; height: fit-content; }
 .member-avatar { width: 100%; aspect-ratio: 1; background: var(--ikb-dark); border: 0.5px solid var(--rule); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; }
