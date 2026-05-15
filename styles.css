@@ -969,6 +969,7 @@ hr.tr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 24px; 
 .city-detail { font-family: var(--display); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 .city-cell.active .city-name { color: var(--yellow); }
 .city-cell.active .city-detail { color: rgba(255,214,0,0.6); }
+.city-cell-wide { grid-column: span 4; }
 @media (max-width: 900px) {
   .cities-map-section { padding: 72px 24px; }
   .city-grid { grid-template-columns: repeat(2,1fr); }
@@ -976,6 +977,7 @@ hr.tr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 24px; 
   .city-cell:nth-child(2n) { border-right: none; }
   .city-cell:nth-last-child(-n+4) { border-bottom: 0.5px solid var(--rule); }
   .city-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .city-cell-wide { grid-column: span 2; }
 }
 
 .endorsement { border-top: 0.5px solid var(--rule); padding: 100px 48px; }
