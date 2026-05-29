@@ -1184,3 +1184,14 @@ hr.sr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 18px; 
 .ep-text { font-size: 14px; color: var(--off-white); line-height: 1.65; }
 .ep-text strong { color: var(--white); }
 @media (max-width: 900px) { .ethos { padding: 72px 24px; } .ethos-inner { grid-template-columns: 1fr; gap: 44px; } }
+
+/* ── LEGAL PAGES (privacy.html, terms.html) ── */
+.legal-page { padding: 80px 48px 120px; }
+.legal-inner { max-width: 720px; margin: 0 auto; }
+.legal-h1 { font-family: var(--display); font-size: clamp(40px,6vw,72px); font-weight: 900; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.05; color: var(--white); margin-bottom: 16px; }
+.legal-meta { font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
+.legal-body p { font-family: var(--body); font-size: 16px; line-height: 1.85; color: var(--off-white); margin-bottom: 24px; }
+.legal-body a { color: var(--muted); text-underline-offset: 3px; }
+.legal-body a:hover { color: var(--white); }
+.legal-body code { font-family: monospace; font-size: 14px; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 3px; }
+@media (max-width: 768px) { .legal-page { padding: 56px 24px 80px; } }
