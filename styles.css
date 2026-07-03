@@ -396,6 +396,12 @@ section[id] + section[id] { border-top: 0.5px solid var(--rule); }
 .thesis-body { font-size: 16px; line-height: 1.85; color: var(--off-white); max-width: 62ch; }
 .thesis-body p { margin-bottom: 24px; }
 .thesis-body p:last-child { margin-bottom: 0; }
+.thesis-subhead {
+  font-family: var(--display); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--yellow); margin-bottom: 10px; margin-top: 28px;
+}
+.thesis-subhead:first-child { margin-top: 0; }
 .thesis-body strong { color: var(--white); font-weight: 700; }
 @media (max-width: 900px) {
   .thesis-section { padding: 80px 24px; }
