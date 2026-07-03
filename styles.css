@@ -19,8 +19,8 @@
   --muted-dim: #7A8FD6;
   --link:      #E0B15C;
   --rule:      rgba(255,255,255,0.16);
-  --display:   'Barlow Semi Condensed', sans-serif;
-  --body:      'Libre Baskerville', serif;
+  --display:   'Anton', sans-serif;
+  --body:      'PT Serif', serif;
 }
 
 /* ── RESET + BASE ── */
