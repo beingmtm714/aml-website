@@ -199,16 +199,21 @@ footer { border-top: 0.5px solid var(--rule); background: var(--ikb-deep); }
   max-width: 1200px; margin: 0 auto;
   padding: 22px 48px;
   border-top: 0.5px solid var(--rule);
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: space-between; align-items: center; gap: 32px;
 }
 .footer-legal {
   font-family: var(--display); font-size: 10px;
   letter-spacing: 0.1em; color: var(--muted-dim);
   text-transform: uppercase;
 }
+.footer-legal-group { display: flex; flex-direction: column; gap: 6px; max-width: 640px; }
+.footer-legal-links { display: flex; gap: 24px; flex-shrink: 0; }
+.footer-legal-links a.footer-legal { color: var(--coral); text-decoration: none; }
 @media (max-width: 768px) {
   .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 48px 24px; }
-  .footer-bottom { flex-direction: column; gap: 10px; padding: 22px 24px; text-align: center; }
+  .footer-bottom { flex-direction: column; gap: 16px; padding: 22px 24px; text-align: center; }
+  .footer-legal-group { max-width: none; align-items: center; }
+  .footer-legal-links { justify-content: center; }
 }
 
 /* ── SHARED BUTTONS ── */
