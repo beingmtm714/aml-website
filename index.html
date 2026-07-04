@@ -137,19 +137,57 @@
       <h2 class="thesis-pull reveal d1">
         Artisans were the first economy.<br>Then the math turned <em>against them.</em>
       </h2>
-      <div class="thesis-body reveal d2">
-        <div class="thesis-subhead">Then</div>
-        <p>
-          Before capitalism had a name, a town's artisans were its economy. They made what the place was known for and organized into guilds that trained their own and looked after each other. Then scale priced them out. One power loom did the work of twenty weavers and had to live in a factory, so the advantage went to whoever owned the building. For two hundred years after, artisans kept the same skills their guilds had built. What changed was the price of competing: the scale of a factory, or the budget for a back office, and most artisans had neither.
-        </p>
-        <div class="thesis-subhead">Now</div>
-        <p>
-          AI flips that. The custom tools that used to take engineers and a budget now take a clear idea of how your business runs and what your customers need. A florist can build the delivery-and-subscription tool she would have hired a developer for.
-        </p>
-        <div class="thesis-subhead">The catch</div>
-        <p>
-          The tech giants behind AI aren't innocent. But used deliberately, their tools let artisans build and own the custom business infrastructure that, until now, was too complex to build or too expensive to rent. Open Guild teaches those uses and skips the generative gimmicks.
-        </p>
+      <div class="timeline-track reveal d2">
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+          <div class="timeline-tag">Then</div>
+          <div class="flip-card" tabindex="0" role="button" aria-expanded="false" aria-label="Then: expand for more detail">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <p class="flip-text">Artisans built the first economy. Then scale priced them out for two hundred years.</p>
+                <span class="flip-hint">More ↻</span>
+              </div>
+              <div class="flip-face flip-back">
+                <p class="flip-text">Guilds trained artisans and looked after their own. Then the power loom did the work of twenty weavers, and running a business meant owning a factory or affording a back office most artisans could never reach.</p>
+                <span class="flip-hint">Close ✕</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+          <div class="timeline-tag">Now</div>
+          <div class="flip-card" tabindex="0" role="button" aria-expanded="false" aria-label="Now: expand for more detail">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <p class="flip-text">AI flips that. Tools that once needed a developer now just need a clear idea.</p>
+                <span class="flip-hint">More ↻</span>
+              </div>
+              <div class="flip-face flip-back">
+                <p class="flip-text">The custom tools that used to take engineers and a budget now take a clear idea of how your business runs. A florist can build the delivery tool she once would have hired someone for.</p>
+                <span class="flip-hint">Close ✕</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-tag">The opportunity</div>
+          <div class="flip-card" tabindex="0" role="button" aria-expanded="false" aria-label="The opportunity: expand for more detail">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <p class="flip-text">The tech giants behind AI aren't innocent. Used well, their tools still hand power back.</p>
+                <span class="flip-hint">More ↻</span>
+              </div>
+              <div class="flip-face flip-back">
+                <p class="flip-text">Used deliberately, AI lets artisans build and own infrastructure that used to be too complex or too expensive. Open Guild teaches that use, and skips the generative gimmicks.</p>
+                <span class="flip-hint">Close ✕</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -382,6 +420,33 @@ if (toggle && mobile) {
     toggle.classList.toggle('open');
   });
 }
+
+const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+function setStepActive(step, active) {
+  const dot = step.querySelector('.timeline-dot');
+  if (dot) dot.classList.toggle('dot-active', active);
+  const line = step.querySelector('.timeline-line');
+  if (line) line.classList.toggle('line-active', active);
+  const prevLine = step.previousElementSibling && step.previousElementSibling.querySelector('.timeline-line');
+  if (prevLine) prevLine.classList.toggle('line-active', active);
+}
+document.querySelectorAll('.timeline-step').forEach(step => {
+  const card = step.querySelector('.flip-card');
+  if (!card) return;
+  if (canHover) {
+    card.addEventListener('mouseenter', () => setStepActive(step, true));
+    card.addEventListener('mouseleave', () => setStepActive(step, false));
+    card.addEventListener('focus', () => setStepActive(step, true));
+    card.addEventListener('blur', () => setStepActive(step, false));
+  } else {
+    card.addEventListener('click', () => {
+      const willOpen = !card.classList.contains('flipped');
+      card.classList.toggle('flipped', willOpen);
+      card.setAttribute('aria-expanded', String(willOpen));
+      setStepActive(step, willOpen);
+    });
+  }
+});
 </script>
 </body>
 </html>
