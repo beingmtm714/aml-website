@@ -83,7 +83,7 @@
   <div class="team-section-inner">
 
     <!-- George Howard -->
-    <div class="member">
+    <div class="member" id="george-howard">
       <div class="member-avatar-wrap reveal">
         <div class="member-avatar">
           <span class="member-initials">GH</span>
@@ -134,7 +134,7 @@
     </div>
 
     <!-- Michael Martin -->
-    <div class="member">
+    <div class="member" id="michael-martin">
       <div class="member-avatar-wrap reveal">
         <div class="member-avatar">
           <span class="member-initials">MM</span>
@@ -181,7 +181,7 @@
     </div>
 
     <!-- Dan Servantes -->
-    <div class="member">
+    <div class="member" id="dan-servantes">
       <div class="member-avatar-wrap reveal">
         <div class="member-avatar">
           <span class="member-initials">DS</span>
@@ -273,6 +273,16 @@
   </div>
 </footer>
 
+<nav class="toc-rail" id="tocRail" aria-label="Page sections">
+  <a class="toc-item" href="#george-howard"><span class="toc-label">George Howard</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#michael-martin"><span class="toc-label">Michael Martin</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#dan-servantes"><span class="toc-label">Dan Servantes</span><span class="toc-dot"></span></a>
+</nav>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
@@ -285,6 +295,34 @@ if (toggle && mobile) {
     mobile.classList.toggle('open');
     toggle.classList.toggle('open');
   });
+
+}
+
+const tocItems = document.querySelectorAll('.toc-item');
+if (tocItems.length) {
+  const tocSections = Array.from(tocItems).map(a => document.querySelector(a.getAttribute('href')));
+  function updateTocActive() {
+    let current = -1;
+    tocSections.forEach((sec, i) => { if (sec && sec.getBoundingClientRect().top <= 160) current = i; });
+    tocItems.forEach((a, i) => a.classList.toggle('active', i === current));
+  }
+  window.addEventListener('scroll', updateTocActive, { passive: true });
+  updateTocActive();
+  tocItems.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+const backToTop = document.getElementById('backToTop');
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 </script>
 </body>

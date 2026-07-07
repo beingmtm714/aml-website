@@ -130,7 +130,7 @@
 </div>
 
 <!-- WHY NOW -->
-<div class="thesis-section">
+<div class="thesis-section" id="why-now">
   <div class="thesis-inner">
     <div class="thesis-left reveal">
       <span class="label">Why now</span>
@@ -197,7 +197,7 @@
 
 
 <!-- WHAT WE TEACH -->
-<div class="thesis-section">
+<div class="thesis-section" id="what-we-teach">
   <div class="thesis-inner">
     <div class="thesis-left reveal">
       <span class="label">What we teach</span>
@@ -228,7 +228,7 @@
 </div>
 
 <!-- THE NETWORK -->
-<div class="shift-section">
+<div class="shift-section" id="network">
   <div class="shift-inner">
     <div class="shift-header">
       <h2 class="shift-title reveal">A guild<br>was never<br>just a<br><em>workshop.</em></h2>
@@ -246,7 +246,7 @@
 </div>
 
 <!-- PROGRAM SUMMARY -->
-<div class="phases-section">
+<div class="phases-section" id="program">
   <div class="phases-header">
     <h2 class="phases-title reveal">Four<br>phases.<br>Ten<br>weeks.</h2>
     <p class="phases-intro reveal d1">A business at the end. Not a notebook of aspirations.</p>
@@ -303,7 +303,7 @@
 </div>
 
 <!-- TRACK RECORD PREVIEW -->
-<div class="shift-section">
+<div class="shift-section" id="track-record">
   <div class="shift-inner">
     <div class="shift-header">
       <h2 class="shift-title reveal">We've<br>delivered<br>this<br><em>before.</em></h2>
@@ -336,7 +336,7 @@
 </div>
 
 <!-- PARTNER ROUTING -->
-<div class="section" style="border-top:0.5px solid var(--rule);">
+<div class="section" id="partner-up" style="border-top:0.5px solid var(--rule);">
   <div class="section-inner">
     <div class="sh reveal"><span class="sl">Work with us</span></div>
     <h2 class="thesis-pull reveal d1" style="margin-bottom:56px;">Three ways<br>to <em>partner.</em></h2>
@@ -403,6 +403,18 @@
   </div>
 </footer>
 
+<nav class="toc-rail" id="tocRail" aria-label="Page sections">
+  <a class="toc-item" href="#why-now"><span class="toc-label">Why Now</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#what-we-teach"><span class="toc-label">What We Teach</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#network"><span class="toc-label">The Network</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#program"><span class="toc-label">Four Phases</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#track-record"><span class="toc-label">Track Record</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#partner-up"><span class="toc-label">Partner Up</span><span class="toc-dot"></span></a>
+</nav>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
@@ -415,6 +427,33 @@ if (toggle && mobile) {
     mobile.classList.toggle('open');
     toggle.classList.toggle('open');
   });
+}
+
+const tocItems = document.querySelectorAll('.toc-item');
+if (tocItems.length) {
+  const tocSections = Array.from(tocItems).map(a => document.querySelector(a.getAttribute('href')));
+  function updateTocActive() {
+    let current = -1;
+    tocSections.forEach((sec, i) => { if (sec && sec.getBoundingClientRect().top <= 160) current = i; });
+    tocItems.forEach((a, i) => a.classList.toggle('active', i === current));
+  }
+  window.addEventListener('scroll', updateTocActive, { passive: true });
+  updateTocActive();
+  tocItems.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+const backToTop = document.getElementById('backToTop');
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
 const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;

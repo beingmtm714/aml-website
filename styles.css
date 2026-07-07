@@ -1251,3 +1251,54 @@ hr.sr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 18px; 
 .legal-body a:hover { color: var(--white); }
 .legal-body code { font-family: monospace; font-size: 14px; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 3px; }
 @media (max-width: 768px) { .legal-page { padding: 56px 24px 80px; } }
+
+/* ── TOC RAIL (sticky in-page navigation) ── */
+.toc-rail {
+  position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
+  z-index: 400;
+  display: flex; flex-direction: column; gap: 13px;
+  padding: 16px 12px; border-radius: 22px;
+  background: transparent; opacity: 0.32;
+  transition: opacity 0.3s ease, background 0.3s ease;
+}
+.toc-rail:hover {
+  opacity: 1;
+  background: rgba(0, 17, 82, 0.65);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+}
+.toc-item {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+  text-decoration: none; cursor: pointer;
+}
+.toc-dot {
+  width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.45);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.toc-item:hover .toc-dot { border-color: var(--coral); }
+.toc-item.active .toc-dot { background: var(--coral); border-color: var(--coral); transform: scale(1.35); }
+.toc-label {
+  font-family: var(--display); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--off-white);
+  white-space: nowrap; max-width: 0; overflow: hidden; opacity: 0;
+  transition: max-width 0.3s ease, opacity 0.2s ease;
+}
+.toc-rail:hover .toc-label { max-width: 220px; opacity: 1; }
+.toc-item.active .toc-label { color: var(--coral); }
+@media (max-width: 1100px) { .toc-rail { display: none; } }
+
+/* ── BACK TO TOP ── */
+.back-to-top {
+  position: fixed; right: 24px; bottom: 24px; z-index: 400;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--ikb-dark); border: 1.5px solid var(--coral);
+  color: var(--coral); display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background 0.2s, color 0.2s;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { background: var(--coral); color: var(--ikb-deep); }
+.back-to-top svg { width: 18px; height: 18px; }
+@media (max-width: 640px) { .back-to-top { right: 16px; bottom: 16px; width: 42px; height: 42px; } }

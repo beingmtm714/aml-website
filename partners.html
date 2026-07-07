@@ -75,7 +75,7 @@
 </div>
 
 <!-- THREE ROUTING CARDS -->
-<div class="section" style="border-top:0.5px solid var(--rule);">
+<div class="section" id="partner-types" style="border-top:0.5px solid var(--rule);">
   <div class="section-inner">
     <div class="pillars">
       <div class="pillar reveal">
@@ -104,7 +104,7 @@
 </div>
 
 <!-- HOW IT FITS TOGETHER -->
-<div class="berklee-section">
+<div class="berklee-section" id="how-it-fits">
   <div class="berklee-inner">
     <div>
       <h2 class="berklee-quote-text reveal">One program.<br><em>Three entry points.</em></h2>
@@ -184,6 +184,15 @@
   </div>
 </footer>
 
+<nav class="toc-rail" id="tocRail" aria-label="Page sections">
+  <a class="toc-item" href="#partner-types"><span class="toc-label">Partner Types</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#how-it-fits"><span class="toc-label">How It Fits</span><span class="toc-dot"></span></a>
+</nav>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
@@ -196,6 +205,34 @@ if (toggle && mobile) {
     mobile.classList.toggle('open');
     toggle.classList.toggle('open');
   });
+
+}
+
+const tocItems = document.querySelectorAll('.toc-item');
+if (tocItems.length) {
+  const tocSections = Array.from(tocItems).map(a => document.querySelector(a.getAttribute('href')));
+  function updateTocActive() {
+    let current = -1;
+    tocSections.forEach((sec, i) => { if (sec && sec.getBoundingClientRect().top <= 160) current = i; });
+    tocItems.forEach((a, i) => a.classList.toggle('active', i === current));
+  }
+  window.addEventListener('scroll', updateTocActive, { passive: true });
+  updateTocActive();
+  tocItems.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+const backToTop = document.getElementById('backToTop');
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 </script>
 </body>

@@ -78,7 +78,7 @@
 <div class="manifesto">
 
   <!-- Case Study 1: Mexico City -->
-  <div class="chapter">
+  <div class="chapter" id="mexico-city">
     <div class="chapter-left reveal">
       <div class="chapter-num">01</div>
       <div class="chapter-label">Mexico City</div>
@@ -111,7 +111,7 @@
   </div>
 
   <!-- Case Study 2: Collider On The Lot -->
-  <div class="chapter">
+  <div class="chapter" id="burbank">
     <div class="chapter-left reveal">
       <div class="chapter-num">02</div>
       <div class="chapter-label">Burbank, CA</div>
@@ -144,7 +144,7 @@
   </div>
 
   <!-- Case Study 3: Raidar -->
-  <div class="chapter">
+  <div class="chapter" id="berklee">
     <div class="chapter-left reveal">
       <div class="chapter-num">03</div>
       <div class="chapter-label">Berklee College of Music</div>
@@ -173,7 +173,7 @@
   </div>
 
   <!-- Case Study 4: St. Claude Main Street -->
-  <div class="chapter">
+  <div class="chapter" id="new-orleans">
     <div class="chapter-left reveal">
       <div class="chapter-num">04</div>
       <div class="chapter-label">New Orleans, Louisiana</div>
@@ -255,6 +255,17 @@
   </div>
 </footer>
 
+<nav class="toc-rail" id="tocRail" aria-label="Page sections">
+  <a class="toc-item" href="#mexico-city"><span class="toc-label">Mexico City</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#burbank"><span class="toc-label">Burbank, CA</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#berklee"><span class="toc-label">Berklee</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#new-orleans"><span class="toc-label">New Orleans</span><span class="toc-dot"></span></a>
+</nav>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
@@ -267,6 +278,34 @@ if (toggle && mobile) {
     mobile.classList.toggle('open');
     toggle.classList.toggle('open');
   });
+
+}
+
+const tocItems = document.querySelectorAll('.toc-item');
+if (tocItems.length) {
+  const tocSections = Array.from(tocItems).map(a => document.querySelector(a.getAttribute('href')));
+  function updateTocActive() {
+    let current = -1;
+    tocSections.forEach((sec, i) => { if (sec && sec.getBoundingClientRect().top <= 160) current = i; });
+    tocItems.forEach((a, i) => a.classList.toggle('active', i === current));
+  }
+  window.addEventListener('scroll', updateTocActive, { passive: true });
+  updateTocActive();
+  tocItems.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+const backToTop = document.getElementById('backToTop');
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 </script>
 </body>

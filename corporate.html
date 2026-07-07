@@ -80,14 +80,14 @@
 </div>
 
 <!-- WHAT WE TEACH / SPONSOR FIT -->
-<div class="section">
+<div class="section" id="what-we-teach">
   <div class="section-inner">
     <p class="why-body reveal" style="max-width:680px;font-size:18px;line-height:1.7;">Open Guild teaches artisans to build the tools they run their business on. A glassblower builds a commission-and-inventory tracker. A leatherworker builds a custom-order intake system. A brewer builds a taproom loyalty tool. Your product sits inside that workflow: taught as a working tool, not pitched as an ad.</p>
   </div>
 </div>
 
 <!-- BENEFITS -->
-<div class="why-section">
+<div class="why-section" id="benefits">
   <div class="why-inner">
     <div class="why-header reveal">
       <span class="section-label">What you get</span>
@@ -140,7 +140,7 @@
 </div>
 
 <!-- TRACK RECORD -->
-<div class="shift-section">
+<div class="shift-section" id="track-record">
   <div class="shift-inner">
     <div class="shift-header">
       <h2 class="shift-title reveal">Relevant<br>track<br><em>record.</em></h2>
@@ -221,6 +221,16 @@
   </div>
 </footer>
 
+<nav class="toc-rail" id="tocRail" aria-label="Page sections">
+  <a class="toc-item" href="#what-we-teach"><span class="toc-label">What We Teach</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#benefits"><span class="toc-label">Benefits</span><span class="toc-dot"></span></a>
+  <a class="toc-item" href="#track-record"><span class="toc-label">Track Record</span><span class="toc-dot"></span></a>
+</nav>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
@@ -233,6 +243,34 @@ if (toggle && mobile) {
     mobile.classList.toggle('open');
     toggle.classList.toggle('open');
   });
+
+}
+
+const tocItems = document.querySelectorAll('.toc-item');
+if (tocItems.length) {
+  const tocSections = Array.from(tocItems).map(a => document.querySelector(a.getAttribute('href')));
+  function updateTocActive() {
+    let current = -1;
+    tocSections.forEach((sec, i) => { if (sec && sec.getBoundingClientRect().top <= 160) current = i; });
+    tocItems.forEach((a, i) => a.classList.toggle('active', i === current));
+  }
+  window.addEventListener('scroll', updateTocActive, { passive: true });
+  updateTocActive();
+  tocItems.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+const backToTop = document.getElementById('backToTop');
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 </script>
 </body>
