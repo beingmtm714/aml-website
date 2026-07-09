@@ -513,6 +513,7 @@ section[id] + section[id] { border-top: 0.5px solid var(--rule); }
 }
 .phases-intro { font-size: 14px; color: var(--muted); max-width: 38ch; line-height: 1.75; font-style: italic; flex-shrink: 0; }
 .phases-grid { border-top: 0.5px solid var(--rule); display: grid; grid-template-columns: repeat(4, 1fr); }
+.phases-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .phase-card { padding: 44px 40px; border-right: 0.5px solid var(--rule); transition: background 0.2s; }
 .phase-card:last-child { border-right: none; }
 .phase-card:hover { background: var(--ikb-dark); }
@@ -546,7 +547,7 @@ hr.pr { border: none; border-top: 0.5px solid var(--rule); margin-bottom: 18px; 
 }
 @media (max-width: 900px) {
   .phases-header { flex-direction: column; padding: 60px 24px 40px; align-items: flex-start; }
-  .phases-grid { grid-template-columns: 1fr; }
+  .phases-grid, .phases-grid.cols-3 { grid-template-columns: 1fr; }
   .phase-card { border-right: none; border-bottom: 0.5px solid var(--rule); }
   .phase-card:last-child { border-bottom: none; }
 }
