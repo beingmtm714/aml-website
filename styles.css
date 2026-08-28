@@ -71,11 +71,14 @@ nav {
   height: 58px; padding: 0 48px;
 }
 .wordmark {
+  display: inline-flex; align-items: center; gap: 11px;
   font-family: var(--display);
   font-size: 17px; font-weight: 900;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--white); text-decoration: none;
 }
+.wordmark-mark { display: block; width: 28px; height: 24px; flex-shrink: 0; }
+.wordmark span { white-space: nowrap; }
 .wordmark em { color: var(--coral); font-style: normal; }
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a {
@@ -155,10 +158,23 @@ nav {
 .nav-mobile ul li:last-child a { border-bottom: none; }
 .nav-mobile ul a.sub { padding-left: 36px; font-size: 11px; color: var(--muted-dim); }
 
+/* The logo mark eats horizontal room, so tighten the nav before the
+   wordmark can collide with the links. */
+@media (max-width: 1100px) {
+  .nav-inner { padding: 0 28px; }
+  .nav-links { gap: 22px; }
+}
+
 @media (max-width: 768px) {
   .nav-inner { padding: 0 24px; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
+}
+
+/* On phones the logo lockup and the CTA can't both fit. The mobile
+   menu carries its own "Get in Touch" link, so drop the header one. */
+@media (max-width: 480px) {
+  .nav-cta { display: none; }
 }
 
 /* ── FOOTER ── */
